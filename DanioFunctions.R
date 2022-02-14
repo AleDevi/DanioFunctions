@@ -4,17 +4,18 @@ library(dplyr)
 library(ggplot2)
 library(effects)
 
-#I put together a 4 of functions to summarise danioscope data
-#functions are very simple and can be easily modified
-#they are meant to work sequentially 
-#a last function put the three main together and can be used alternatively
-#the forth-one is used to remove wells from the analysis
+#I put together 5 functions to summarise danioscope data
+#Functions are very simple and can be easily modified
+#They are meant to work sequentially 
+#The forth function puts the three main together and can be used alternatively
+#The fifth-one is used to remove wells from the dataset and can be used before or after
 
 
 
-##funzione per mettere i minuti (a uno e raggruppati in 5) e togliere outlier (basato sui valori a un minuto
-#(toglie cio che ? minore/uguale a "out")
-##non specificare "out" se NON si vuole togliere gli outliers 
+##The first function adds 2 more variables: a "1 minue index" and a "5 minute index".
+#it also removes the outliers based on the "1 minute" and the "distance moved" variable
+#(removes what is bigger than "out")
+##If "out" is not specified it doesn't remove anything 
 
 danio_min<- function (x,out=max(x$Distance_moved_mm)){#x is the dataset, out is the outliers value (in distance moved)
         x[1,(ncol(x)+1)]<-1        
