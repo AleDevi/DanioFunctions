@@ -39,11 +39,11 @@ darkcond<-function(x,y,z){#file of the list, y=starting dark, z=ending dark
         x<-cbind(x,condition)
         x}
 
-##semplice funzione per calcolare le medie della velocit? nei 5 minuti e la somma dello spazio percorso
-# e dei tempi di attivit? e inattivit?. 
-# La funzione Filtra i valori in base alle distanza percorsa nei 5 minuti (minore/uguale a "out")
-# Non specificando "out" non si rimuovono gli outliers  
-# La funzione rimuove gli ultimi 5 minuti (che son sempre incasinati)
+##The next simple function calculates the mean velocity within the 5 minutes,
+# the sum of the distance moved and the activity/inactivity times.
+# The function also filters the values based on the distance moved in the 5 minutes (keeps what is smaller/equals to "out")
+# Not specifying "out" nothing is removed.
+# The last 5 minutes are also removed (which are usually a mess)
 
 danio_5<-function(x,out=max(y$Distance_movedT)){y<-x %>%
         group_by(Trial,Treatment,Pozzetto,five_min_index2,condition) %>% 
@@ -83,7 +83,6 @@ danio_rem<-function(x,KR="k",first,last){
         else{rem_wells<-c(wells[first:last]) #remove all the wells fromfrom first to last
         y<-x[!x$Pozzetto%in%rem_wells,]}
         y}
-
 
 
 
